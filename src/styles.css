@@ -1,0 +1,35 @@
+.App {
+    background-color: #383e56;
+    height: 100vh;
+}
+
+.banner {
+    /* background-image: ''; */
+    padding: 5rem;
+    background-color: #f6f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 16rem;
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    font-family: "Impact";
+    font-size: 70px;
+    color: #16c79a;
+}
+
+.btn {
+    color: #ffffff;
+    background-color: #252525;
+    font-family: "sans-serif";
+    font-size: 17px;
+    font-weight: bold;
+    width: 10rem;
+}
