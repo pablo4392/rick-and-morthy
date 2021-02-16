@@ -12,14 +12,15 @@ const ResidentContainer = () => {
 
     useEffect(() => {
         API().then((res) => {
-            const newUrl = res.data.results[10].residents[0]
+            const newUrl = res.data.results[0].residents[1]
             const response = axios(newUrl)
-            response.then((secondRes) => {  
-                setName(secondRes.name)
-                setPicture(secondRes.image)
-                setStatus(secondRes.status)
-                setOrigin(secondRes.origin.name)
-                setEpisodes(secondRes.episode.length)
+            response.then((newRes) => {  
+                console.log(newRes)
+                setName(newRes.data.name)
+                setPicture(newRes.data.image)
+                setStatus(newRes.data.status)
+                setOrigin(newRes.data.origin.name)
+                setEpisodes(newRes.data.episode.length)
             })
         })
     }, [])

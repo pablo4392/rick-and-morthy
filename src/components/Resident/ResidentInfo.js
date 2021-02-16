@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Resident.css'
 
 const ResidentInfo = ({
     picture,
@@ -9,7 +10,7 @@ const ResidentInfo = ({
 }) => {
 
     return(
-        <div className="card" style="width: 18rem;">
+        <div className="card">
             <img src={picture} className="card-img-top" alt={name} />
             <div className="card-body">
                 <h4 className="card-title">{name}</h4>
