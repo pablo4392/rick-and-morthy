@@ -11,13 +11,13 @@ const LocationContainer = () => {
 
     useEffect(() => {        
         API().then((res) => {
-            console.log(res.data.results)
+            console.log(res.data)
             setName(res.data.results[10].name);
             setType(res.data.results[10].type);
             setDimension(res.data.results[10].dimension);
             setResidents(res.data.results[10].residents.length)
         })
-    })
+    }, [])
 
     return(
         <LocationInfo 

@@ -1,4 +1,5 @@
-// import axios from 'axios'
+import axios from 'axios'
+import API from '../API.js'
 import {useEffect, useState} from 'react'
 import ResidentInfo from './ResidentInfo.js'
 
@@ -10,13 +11,19 @@ const ResidentContainer = () => {
     const[episodes, setEpisodes] = useState("");
 
     useEffect(() => {
-        
-        setName()
-        setPicture()
-        setStatus()
-        setOrigin()
-        setEpisodes()
-    })
+        API().then((res) => {
+            const newUrl = res.data.results[10].residents[0]
+            const response = axios(newUrl)
+            response.then((secondRes) => {  
+                setName(secondRes.name)
+                setPicture(secondRes.image)
+                setStatus(secondRes.status)
+                setOrigin(secondRes.origin.name)
+                setEpisodes(secondRes.episode.length)
+            })
+        })
+    }, [])
+
     return(
         <ResidentInfo 
         picture={picture}

@@ -14,7 +14,6 @@ function App() {
       </div>
       <div className="body">
         <LocationContainer />
-        <ResidentContainer />
       </div>
     </div>
   );
