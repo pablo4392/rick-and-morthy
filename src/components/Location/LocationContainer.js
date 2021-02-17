@@ -1,31 +1,53 @@
 import './Location.css'
-import API from '../API.js'
+import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import LocationInfo from './LocationInfo.js'
+import ResidentContainer from '../Resident/ResidentContainer.js'
 
-const LocationContainer = () => {
-    const [name, setName] = useState("")
-    const [type, setType] = useState("")
-    const [dimension, setDimension] = useState("")
-    const [residents, setResidents] = useState("")
+const LocationContainer = ({query}) => {
+    const [name, setName] = useState("");
+    const [type, setType] = useState("");
+    const [dimension, setDimension] = useState("");
+    const [infoResidents, setInfoResidents] = useState("");
+    const [residents, setResidents] = useState([]);
 
-    useEffect(() => {        
-        API().then((res) => {
-            console.log(res.data)
-            setName(res.data.results[10].name);
-            setType(res.data.results[10].type);
-            setDimension(res.data.results[10].dimension);
-            setResidents(res.data.results[10].residents.length)
-        })
-    }, [])
+    useEffect(() => {
+        if(query) {
+            const Url = `https://rickandmortyapi.com/api/location/${query}`;
+            const promise = axios(Url)
+            promise.then((response) => {
+                console.log(response.data)
+                setName(response.data.name);
+                setType(response.data.type);
+                setDimension(response.data.dimension);
+                setInfoResidents(response.data.residents.length);
+                setResidents(response.data.residents.slice(0, 10));
+            })
+        }
+    }, [query]);
+
+    useEffect(() => {
+        console.log(residents);
+    }, [residents]);
+
+    const residentsArr = residents.map((value) => (
+        <ResidentContainer url={value}/>
+    ));
 
     return(
-        <LocationInfo 
-        name={name}
-        type={type}
-        dimension={dimension}
-        residents={residents}
-        />
+        <div>
+            <div>
+                <LocationInfo 
+                name={name}
+                type={type}
+                dimension={dimension}
+                residents={infoResidents}
+                />
+            </div>
+            <div>
+                { residents.length > 0 && residentsArr }
+            </div>
+        </div>
     )
 }
 
