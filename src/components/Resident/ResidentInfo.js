@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './Resident.css'
 
 const ResidentInfo = ({
@@ -13,7 +12,7 @@ const ResidentInfo = ({
         <div className="card">
             <img src={picture} className="card-img-top" alt={name} />
             <div className="card-body">
-                <h4 className="card-title">{name}</h4>
+                <h4 className="card-name">{name}</h4>
                 <p>Status: {status}</p>
                 <p>Origin: {origin}</p>
                 <p>Episode appearances: {episodes}</p>
